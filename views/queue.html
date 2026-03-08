@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Giliran - Klinik Yakin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-white font-sans h-screen flex flex-col">
+
+    <header class="p-6 bg-slate-800 shadow-2xl flex justify-between items-center border-b border-slate-700">
+        <div class="flex items-center space-x-4">
+            <div class="bg-blue-600 p-3 rounded-2xl shadow-lg">
+                <i class="fas fa-clinic-medical text-2xl"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-black italic tracking-tighter">KLINIK YAKIN</h1>
+                <p class="text-xs text-blue-400 font-bold uppercase tracking-widest">Sistem Giliran Digital</p>
+            </div>
+        </div>
+        <div id="clock" class="text-2xl font-mono font-bold bg-slate-700 px-6 py-2 rounded-2xl border border-slate-600">
+            00:00:00
+        </div>
+    </header>
+
+    <div class="flex-1 flex flex-col lg:flex-row p-6 gap-6 overflow-hidden">
+        
+        <div class="flex-1 bg-slate-800 rounded-[3rem] shadow-2xl flex flex-col items-center justify-center border border-slate-700 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-blue-500 animate-pulse"></div>
+            <h2 class="text-slate-400 uppercase font-black tracking-[0.3em] mb-4 text-sm">Giliran Semasa</h2>
+            <div class="text-[12rem] md:text-[18rem] font-black leading-none text-blue-500 drop-shadow-[0_10px_10px_rgba(59,130,246,0.5)]">
+                A-042
+            </div>
+            <div class="mt-8 bg-slate-700 px-10 py-4 rounded-3xl border border-slate-600 flex items-center space-x-4 animate-bounce">
+                <i class="fas fa-door-open text-blue-400"></i>
+                <span class="text-2xl font-bold uppercase italic">Sila ke Bilik Rawatan 1</span>
+            </div>
+        </div>
+
+        <div class="w-full lg:w-96 flex flex-col gap-4">
+            <div class="bg-blue-600 p-6 rounded-[2.5rem] shadow-xl">
+                <h3 class="font-bold text-center uppercase tracking-widest text-sm mb-4">Seterusnya</h3>
+                <div class="space-y-4">
+                    <div class="bg-blue-700/50 p-4 rounded-2xl flex justify-between items-center border border-blue-400/30">
+                        <span class="text-3xl font-black">A-043</span>
+                        <span class="text-xs font-bold opacity-70 italic">Menunggu</span>
+                    </div>
+                    <div class="bg-blue-700/50 p-4 rounded-2xl flex justify-between items-center border border-blue-400/30">
+                        <span class="text-3xl font-black">A-044</span>
+                        <span class="text-xs font-bold opacity-70 italic">Menunggu</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex-1 bg-slate-800 rounded-[2.5rem] p-6 border border-slate-700 flex flex-col items-center justify-center text-center">
+                <i class="fas fa-hand-holding-medical text-4xl text-slate-600 mb-4"></i>
+                <p class="text-slate-400 text-sm italic italic">"Kesihatan anda keutamaan kami. Sila sediakan kad pengenalan anda."</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update Jam
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-GB', { hour12: false });
+            document.getElementById('clock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
 
