@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Utama - Klinik Yakin System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen flex flex-col items-center justify-center p-6">
+
+    <div class="mb-12 text-center">
+        <div class="bg-blue-600 w-20 h-20 rounded-3xl flex items-center justify-center mx-auto mb-4 shadow-2xl shadow-blue-500/50">
+            <i class="fas fa-clinic-medical text-4xl"></i>
+        </div>
+        <h1 class="text-4xl font-black tracking-tighter italic">KLINIK YAKIN <span class="text-blue-500 text-sm font-bold tracking-widest block mt-1 uppercase">Business Suite ERP</span></h1>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+        
+        <a href="views/pos.html" class="group bg-slate-800 p-8 rounded-[2.5rem] border border-slate-700 hover:bg-blue-600 hover:border-blue-400 transition-all shadow-xl">
+            <i class="fas fa-cash-register text-3xl mb-4 text-blue-400 group-hover:text-white"></i>
+            <h2 class="text-xl font-bold">KASIR (POS)</h2>
+            <p class="text-xs text-slate-400 group-hover:text-blue-100 mt-2">Jualan, Invois & Stok</p>
+        </a>
+
+        <a href="views/dashboard.html" class="group bg-slate-800 p-8 rounded-[2.5rem] border border-slate-700 hover:bg-indigo-600 hover:border-indigo-400 transition-all shadow-xl">
+            <i class="fas fa-chart-pie text-3xl mb-4 text-indigo-400 group-hover:text-white"></i>
+            <h2 class="text-xl font-bold">ANALITIK</h2>
+            <p class="text-xs text-slate-400 group-hover:text-indigo-100 mt-2">Laporan Untung Rugi</p>
+        </a>
+
+        <a href="views/accounting.html" class="group bg-slate-800 p-8 rounded-[2.5rem] border border-slate-700 hover:bg-emerald-600 hover:border-emerald-400 transition-all shadow-xl">
+            <i class="fas fa-book text-3xl mb-4 text-emerald-400 group-hover:text-white"></i>
+            <h2 class="text-xl font-bold">AKAUN</h2>
+            <p class="text-xs text-slate-400 group-hover:text-emerald-100 mt-2">Jurnal & Buku Tunai</p>
+        </a>
+
+        <a href="views/queue.html" class="group bg-slate-800 p-8 rounded-[2.5rem] border border-slate-700 hover:bg-orange-600 hover:border-orange-400 transition-all shadow-xl">
+            <i class="fas fa-users-rectangle text-3xl mb-4 text-orange-400 group-hover:text-white"></i>
+            <h2 class="text-xl font-bold">GILIRAN</h2>
+            <p class="text-xs text-slate-400 group-hover:text-orange-100 mt-2">Paparan TV Pesakit</p>
+        </a>
+
+    </div>
+
+    <footer class="mt-16 text-slate-500 text-xs flex flex-col items-center space-y-2">
+        <div class="flex items-center space-x-4 bg-slate-800 px-4 py-2 rounded-full border border-slate-700">
+            <span class="flex h-2 w-2 rounded-full bg-green-500"></span>
+            <span>Database: Ready</span>
+            <span class="border-l border-slate-600 pl-4 uppercase font-bold tracking-widest text-[10px]">Version 1.0.0</span>
+        </div>
+        <p>© 2026 Klinik Yakin System. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
