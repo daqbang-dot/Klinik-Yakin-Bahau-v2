@@ -2,7 +2,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// 2. Konfigurasi Firebase Anda (Klinik Yakin System)
 const firebaseConfig = {
   apiKey: "AIzaSyAIg96DCq1mc0_ZVCmf5_Ye856ILxZ0wwM",
   authDomain: "klinik-yakin-system.firebaseapp.com",
@@ -12,23 +11,25 @@ const firebaseConfig = {
   appId: "1:970760294149:web:839bf4f0dcad68de70b16c"
 };
 
-// 3. Initialize Firebase & Firestore
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// --- LOGIK POS (SAMA SEPERTI SEBELUM INI) ---
 let cart = [];
 
+// FUNGSI TAMBAH KE BAKUL
 export function addToCart(pName, pPrice) {
-    const item = { name: pName, price: pPrice, qty: 1 };
-    cart.push(item);
+    cart.push({ name: pName, price: pPrice });
+    console.log("Tambah:", pName); // Untuk debug
     updateCartUI();
 }
 
+// FUNGSI UPDATE RUPA BAKUL
 function updateCartUI() {
-    const cartContainer = document.querySelector('.flex-1.p-4.overflow-y-auto.space-y-4');
-    const totalDisplay = document.querySelector('.text-xl.font-bold.text-blue-700 span:last-child');
+    const cartContainer = document.getElementById('cart-items');
+    const totalDisplay = document.getElementById('grand-total');
     
+    if (!cartContainer || !totalDisplay) return;
+
     let html = '';
     let total = 0;
 
@@ -36,38 +37,33 @@ function updateCartUI() {
         html += `
             <div class="flex justify-between items-center text-sm border-b pb-2">
                 <div><p class="font-bold text-gray-800">${item.name}</p></div>
-                <p class="font-bold">RM ${item.price.toFixed(2)}</p>
+                <p class="font-bold text-blue-600">RM ${item.price.toFixed(2)}</p>
             </div>`;
         total += item.price;
     });
 
-    if(cartContainer) cartContainer.innerHTML = html;
-    if(totalDisplay) totalDisplay.innerText = `RM ${total.toFixed(2)}`;
+    cartContainer.innerHTML = html;
+    totalDisplay.innerText = `RM ${total.toFixed(2)}`;
 }
 
-// 4. FUNGSI BAYAR (SIMPAN KE FIREBASE)
+// FUNGSI BAYAR
 export async function processPayment() {
     if (cart.length === 0) return alert("Bakul masih kosong!");
 
-    const grandTotal = cart.reduce((sum, item) => sum + item.price, 0);
-
     try {
-        // Rekod ke Cloud Firestore (Collection: sales)
-        const docRef = await addDoc(collection(db, "sales"), {
+        const grandTotal = cart.reduce((sum, item) => sum + item.price, 0);
+        await addDoc(collection(db, "sales"), {
             item_list: cart,
             total_amount: grandTotal,
             created_at: serverTimestamp(),
             branch: "Bahau"
         });
 
-        alert(`✅ Bayaran Berjaya!\nID Transaksi: ${docRef.id}`);
-        
-        // Kosongkan bakul & UI
+        alert("✅ Bayaran Berjaya Disimpan ke Cloud!");
         cart = [];
         updateCartUI();
-
     } catch (e) {
-        console.error("Ralat Firebase: ", e);
-        alert("Gagal simpan ke Cloud. Pastikan 'Firestore' sudah diaktifkan di Firebase Console.");
+        console.error("Ralat Firebase:", e);
+        alert("Gagal simpan. Sila semak internet anda.");
     }
 }
